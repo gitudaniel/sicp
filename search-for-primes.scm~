@@ -1,0 +1,9 @@
+(load "sicp/timed-prime-test.scm")
+
+(define (search-for-primes first last)
+  (search-iter (if (even? first) (+ first 1) first)
+	       (if (even? last) (- last 1) last)))
+(define (search-iter cur last)
+  (if (<= cur last) (timed-prime-test cur))
+  (if (<= cur last) (search-iter (+ cur 2) last)))
+

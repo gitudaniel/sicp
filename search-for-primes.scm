@@ -1,0 +1,35 @@
+(load "sicp/timed-prime-test.scm")
+
+#|
+(define (search-for-primes n counter)
+  (if (even? n)
+      (s-f-p (+ n 1) counter)
+      (s-f-p n counter)))
+(define (s-f-p n counter)
+  (if (> counter 0)
+      (if (timed-prime-test n)
+	  (s-f-p (+ n 2) (- counter 1))
+	  (s-f-p (+ n 2) counter))
+      "COMPUTATION COMPLETE"))
+(define (even? n)
+  (= (remainder n 2) 0))
+|#
+#|Alternative method
+(define (search-for-primes first last)
+  (search-iter (if (even? first) (+ first 1) first)
+	       (if (even? last) (- last 1) last)))
+(define (search-iter cur last)
+  (if (<= cur last) (timed-prime-test cur))
+  (if (<= cur last) (search-iter (+ cur 2) last)))
+|#
+(define (search-for-primes n counter)
+  (if (even? n)
+      (s-f-p (+ n 1) counter)
+      (s-f-p n counter)))
+;it's important to pay attention to the fact that the predicate of the first 'if' here calls (timed-prime-test n) which in the case of #t computes into two procedures - (report-prime n (elapsed-time)) and the 'then' case of the first 'if'.
+(define (s-f-p n counter)
+  (if (> counter 0)
+      (if (timed-prime-test n)
+	  (s-f-p (+ n 2) (- counter 1))
+	  (s-f-p (+ n 2) counter))
+      "COMPUTATION COMPLETE"))

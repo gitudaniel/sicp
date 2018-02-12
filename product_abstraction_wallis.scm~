@@ -1,0 +1,11 @@
+(load "sicp/product_abstraction.scm")
+
+(define (pi-term n)
+  (if (even? n)
+      (/ (+ n 2) (+ n 1))
+      (/ (+ n 1) (+ n 2))))
+
+(define (inc n) (+ n 1))
+
+(define (pi-product a b)
+  (product pi-term a inc b))

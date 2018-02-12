@@ -1,0 +1,8 @@
+(load "sicp/accumulate.scm")
+
+(define (inc n) (+ n 1))
+
+; summation of cubes
+(define (cube n) (* n n n))
+(define (sum-cubes a b)
+  (accumulate + 0 cube a inc b))

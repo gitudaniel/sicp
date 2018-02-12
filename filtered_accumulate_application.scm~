@@ -1,0 +1,8 @@
+(load "sicp/filtered_accumulate.scm")
+(load "sicp/smallest-divisor.scm")
+
+(define (inc n) (+ n 1))
+
+; Find the sum of the squares of prime numbers
+(define (sum-of-prime-squares a b)
+  (filtered-accumulate + 0 square a inc b prime?))
